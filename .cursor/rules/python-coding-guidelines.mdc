@@ -1,0 +1,123 @@
+---
+description: 
+globs: *.py
+alwaysApply: false
+---
+# Python Coding Guidelines
+
+## General Principles
+- Write clear, readable, and maintainable code
+- Follow PEP 8 style guide
+- Use type hints extensively
+- Write comprehensive docstrings following Google style
+- Keep functions focused and single-purpose
+- Use meaningful variable and function names
+
+## Type Hints
+- Always use type hints for function parameters and return values
+- Prefer built-in types over typing module when possible, i.e. use `list` instead of `List`
+- Use `|` for union types (Python 3.10+) instead of `Union`
+- Use `None` as a type hint when a function can return None
+- Use `Any` sparingly and only when absolutely necessary
+
+Example:
+```python
+def process_data(data: list[int], threshold: float | None = None) -> dict[str, int]:
+    """Process a list of integers and return frequency counts."""
+    pass
+```
+
+## Docstrings
+- Use Google style docstrings
+- Include type information in docstrings
+- Document all public functions, classes, and modules
+- Include examples for complex functions
+- Document exceptions that may be raised
+
+Example:
+```python
+def calculate_average(numbers: list[float]) -> float:
+    """Calculate the arithmetic mean of a list of numbers.
+
+    Args:
+        numbers (list[float]): A list of floating-point numbers.
+
+    Returns:
+        float: The arithmetic mean of the input numbers.
+
+    Raises:
+        ValueError: If the input list is empty.
+    """
+    pass
+```
+
+## Code Organization
+- One class per file unless classes are closely related
+- Group related functions together
+- Use clear module-level docstrings
+- Keep files under 500 lines when possible
+- Use absolute imports
+
+## Naming Conventions
+- Use snake_case for functions and variables
+- Use PascalCase for class names
+- Use UPPER_CASE for constants
+- Use descriptive names that indicate purpose
+- Avoid single-letter variables except in loops
+
+## Error Handling
+- Use specific exceptions rather than bare except
+- Document exceptions in docstrings
+- Use context managers (with statements) for resource management
+- Return None or raise exceptions rather than returning error codes
+
+## Testing
+- Write unit tests for all public functions
+- Use pytest for testing
+- Follow AAA pattern (Arrange, Act, Assert)
+- Test edge cases and error conditions
+- Use meaningful test names
+
+## Code Style
+- Maximum line length: 88 characters (Black formatter default)
+- Use 4 spaces for indentation
+- Use double quotes for strings
+- Use trailing commas in multi-line structures
+- Use parentheses for line continuation
+
+## Performance
+- Use list comprehensions over map/filter
+- Use generator expressions for large datasets
+- Avoid premature optimization
+- Profile code before optimizing
+- Use appropriate data structures
+
+## Security
+- Never store sensitive data in code
+- Use environment variables for configuration
+- Validate all user input
+- Use secure random number generators
+- Follow OWASP security guidelines
+
+## Version Control
+- Write clear commit messages
+- Keep commits focused and atomic
+- Use feature branches
+- Review code before merging
+- Keep dependencies up to date
+
+## Documentation
+- Keep README.md up to date
+- Document API changes
+- Include setup instructions
+- Document environment requirements
+- Keep changelog updated
+
+## Best Practices
+- Use dataclasses for data structures
+- Use enums for constants
+- Use pathlib for file operations
+- Use logging instead of print statements
+- Use type checking tools (mypy)
+- Use code formatting tools (Black)
+- Use linting tools (flake8, pylint)
