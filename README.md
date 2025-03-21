@@ -1,1 +1,1 @@
-Just my custom rules for [Cursor](cursor.com)
+Just my custom rules for [Cursor](http://www.cursor.com/)
