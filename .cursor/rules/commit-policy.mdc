@@ -1,0 +1,115 @@
+---
+description: Enforce consistent commit practices after implementing tasks or subtasks from task-master with clear, descriptive messages
+globs: **/*
+alwaysApply: true
+---
+
+# Task-Master Commit Policy
+
+- **Always Commit After Task Implementation**
+  - Commit immediately after completing any task or subtask from task-master
+  - Never leave implemented tasks uncommitted at the end of a work session
+  - Use `git add .` to stage all relevant changes before committing
+
+- **Commit Message Structure**
+  - Follow conventional commit format: `type(scope): description`
+  - Reference the task/subtask ID in the commit message
+  - Include both implementation details and any rule updates
+
+- **Commit Message Examples**
+
+  ```bash
+  # ✅ DO: Clear task reference with conventional commit
+  feat(data): Implement data preprocessing pipeline for task 3.1
+  
+  - Add data cleaning functions for financial datasets
+  - Implement feature engineering utilities
+  - Add validation for input data formats
+  - Include comprehensive tests for edge cases
+  
+  # ✅ DO: Include rule updates when applicable
+  refactor(models): Optimize backtesting performance for task 7.2
+  
+  - Replace pandas operations with vectorized numpy
+  - Add parallel processing for multiple strategies
+  - Implement memory-efficient data structures
+  - Updated python-coding-guidelines.mdc for performance patterns
+  
+  # ✅ DO: Subtask completion with parent context
+  feat(analysis): Add portfolio risk metrics for subtask 12.3
+  
+  - Implement Sharpe ratio and maximum drawdown calculations
+  - Add volatility and correlation analysis
+  - Create visualization functions for risk reports
+  - Part of task 12: Complete portfolio analysis module
+  ```
+
+- **Required Commit Components**
+  - **Type**: feat, fix, refactor, docs, test, chore, style, perf
+  - **Scope**: Module or component being modified
+  - **Task Reference**: Include task/subtask ID (e.g., "for task 5.2")
+  - **Implementation Summary**: Bullet points of what was accomplished
+  - **Rule Updates**: Note any new or updated cursor rules
+
+- **Commit Workflow Integration**
+
+  ```bash
+  # After implementing a task/subtask:
+  uv run ruff format  # Format code
+  uv run ruff check   # Check for linting issues
+  uv run pytest      # Run tests (if applicable)
+  git add .
+  git commit -m "feat(module): Implement feature X for task 5.2
+  
+  - Detailed implementation notes
+  - Any challenges overcome
+  - Dependencies added with uv
+  - Updated relevant rules if applicable"
+  ```
+
+- **When to Commit**
+  - After setting task status to 'done' with `task-master set-status`
+  - After updating subtask details with `update-subtask`
+  - Before switching to the next task
+  - After updating or creating cursor rules based on implementation
+
+- **Git Best Practices Integration**
+  - Keep commits focused on single task/subtask
+  - Include all related files (code, tests, docs, rules) in one commit
+  - Write commit messages that explain the "what" and "why"
+  - Use present tense in commit messages ("Add feature" not "Added feature")
+  - Reference task-master task IDs for traceability
+
+- **Python Testing Integration**
+  - Run tests with `uv run pytest` before committing
+  - Ensure linting passes with `uv run ruff check`
+  - Format code with `uv run ruff format` if needed
+
+- **Branch-Specific Considerations**
+  - For feature branches: Include branch context in commit scope
+  - For main/master: Ensure commits represent complete, tested features
+  - Reference any associated pull requests or issues
+
+- **❌ DON'T: Poor commit practices**
+
+  ```bash
+  # Bad: Vague message without task reference
+  git commit -m "fix stuff"
+  
+  # Bad: Missing implementation details
+  git commit -m "feat: task 5 done"
+  
+  # Bad: Multiple unrelated tasks in one commit
+  git commit -m "feat: tasks 5, 6, and 7 complete"
+  ```
+
+- **Verification Checklist**
+  - [ ] Task/subtask marked as 'done' in task-master
+  - [ ] Code formatted with `uv run ruff format`
+  - [ ] Linting passes with `uv run ruff check`
+  - [ ] Tests passing with `uv run pytest`
+  - [ ] All code changes staged with `git add .`
+  - [ ] Commit message follows conventional format
+  - [ ] Task ID referenced in commit message
+  - [ ] Implementation details included in commit body
+  - [ ] Any updated rules included in commit
